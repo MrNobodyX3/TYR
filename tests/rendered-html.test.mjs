@@ -35,7 +35,7 @@ test("renders the vehicle database", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>Tank Database — TYR<\/title>/i);
-  assert.match(html, /18 TANKS/);
+  assert.match(html, /PILOT HEAVY/);
   assert.match(html, /EVERY ANGLE/);
   assert.match(html, /Inspect Penetration/);
   assert.match(html, /Kestrel/);

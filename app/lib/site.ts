@@ -1,4 +1,5 @@
 export const STEAM_URL = "https://store.steampowered.com/app/2445260/Tyr/";
+export const DISCORD_URL = "https://discord.gg/tyr";
 export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export function sitePath(path: string) {

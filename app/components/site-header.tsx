@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { NAVIGATION, sitePath, STEAM_URL, type NavigationKey } from "../lib/site";
+import { DISCORD_URL, NAVIGATION, sitePath, STEAM_URL, type NavigationKey } from "../lib/site";
 
 type SiteHeaderProps = {
   active: NavigationKey;
@@ -58,14 +58,15 @@ export function SiteHeader({ active, home = false, statusText, statusMeta }: Sit
   return (
     <>
       <a className="skip-link" href="#main-content">Skip to content</a>
-      <div className="queue-strip">
-        <img className="queue-emblem" src={sitePath("/fav.svg")} alt="" aria-hidden="true" width="21" height="21" />
-        <span className="queue-copy">{statusText}</span>
-        <span className="queue-pulse" aria-hidden="true" />
-        <span className="queue-meta">{statusMeta}</span>
-      </div>
+      <header className="site-header">
+        <div className="queue-strip">
+          <img className="queue-emblem" src={sitePath("/fav.svg")} alt="" aria-hidden="true" width="21" height="21" />
+          <span className="queue-copy">{statusText}</span>
+          <span className="queue-pulse" aria-hidden="true" />
+          <span className="queue-meta">{statusMeta}</span>
+        </div>
 
-      <nav className="top-nav" aria-label="Primary navigation">
+        <nav className="top-nav" aria-label="Primary navigation">
         <a className="wordmark" href={home ? "#top" : sitePath("/")} aria-label="TYR home">
           <img src={sitePath("/tyr-logo.svg")} alt="TYR" width="112" height="40" />
         </a>
@@ -83,9 +84,15 @@ export function SiteHeader({ active, home = false, statusText, statusMeta }: Sit
           </div>
         </div>
 
-        <a className="nav-cta" href={STEAM_URL} target="_blank" rel="noreferrer">
-          <span className="nav-cta-label">Wishlist <span className="nav-cta-extra">on Steam</span></span><span aria-hidden="true">↗</span>
-        </a>
+        <div className="nav-actions">
+          <a className="nav-cta" href={STEAM_URL} target="_blank" rel="noreferrer">
+            <span className="nav-cta-label">Wishlist <span className="nav-cta-extra">on Steam</span></span><span aria-hidden="true">↗</span>
+          </a>
+          <a className="nav-discord" href={DISCORD_URL} target="_blank" rel="noreferrer">
+            <img src={sitePath("/discord.svg")} alt="" aria-hidden="true" width="21" height="21" />
+            <span className="sr-only">Join the TYR Discord</span>
+          </a>
+        </div>
 
         <button
           className="nav-menu-toggle"
@@ -114,7 +121,8 @@ export function SiteHeader({ active, home = false, statusText, statusMeta }: Sit
             />
           ))}
         </div>
-      </nav>
+        </nav>
+      </header>
     </>
   );
 }

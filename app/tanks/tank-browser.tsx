@@ -96,8 +96,8 @@ export function TankBrowser() {
     <section className="tank-browser section" id="tank-roster">
       <div className="tank-browser-heading">
         <div>
-          <div className="section-index">04 // VEHICLE SELECT</div>
-          <h2>18 TANKS.<br /><span>ONE ROSTER.</span></h2>
+          <div className="section-index">04 // ARMORED VEHICLES</div>
+          <h2>PILOT HEAVY.<br /><span>ARMOR.</span></h2>
         </div>
         <div className="tank-filter-controls">
           <div className="tank-filters" aria-label="Filter tanks by class">

@@ -103,7 +103,7 @@ export default function DevelopersPage() {
         </div>
         <div className="crew-actions">
           <a className="button button-primary focus-brackets" href="#studio">Studio directive <span>↑</span></a>
-          <a className="button button-secondary" href="mailto:hello@stoke.games">Contact the Studio</a>
+          <a className="button button-secondary" href="https://www.stoke.games/" target="_blank" rel="noreferrer">Visit the Studio <span>↗</span></a>
         </div>
       </section>
 
