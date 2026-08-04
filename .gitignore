@@ -41,7 +41,6 @@ next-env.d.ts
 /outputs/
 /work/
 /.asset-audit/
-/.openai/
 *.tsbuildinfo
 
 # local visual references supplied for design direction
