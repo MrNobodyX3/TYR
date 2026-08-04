@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { NAVIGATION, STEAM_URL, type NavigationKey } from "../lib/site";
+import { NAVIGATION, sitePath, STEAM_URL, type NavigationKey } from "../lib/site";
 
 type SiteHeaderProps = {
   active: NavigationKey;
@@ -53,21 +53,21 @@ export function SiteHeader({ active, home = false, statusText, statusMeta }: Sit
     return () => window.removeEventListener("keydown", closeOnEscape);
   }, [menuOpen]);
 
-  const hrefFor = (href: string) => (home && href.startsWith("/#") ? href.slice(1) : href);
+  const hrefFor = (href: string) => (home && href.startsWith("/#") ? href.slice(1) : sitePath(href));
 
   return (
     <>
       <a className="skip-link" href="#main-content">Skip to content</a>
       <div className="queue-strip">
-        <img className="queue-emblem" src="/fav.svg" alt="" aria-hidden="true" width="21" height="21" />
+        <img className="queue-emblem" src={sitePath("/fav.svg")} alt="" aria-hidden="true" width="21" height="21" />
         <span className="queue-copy">{statusText}</span>
         <span className="queue-pulse" aria-hidden="true" />
         <span className="queue-meta">{statusMeta}</span>
       </div>
 
       <nav className="top-nav" aria-label="Primary navigation">
-        <a className="wordmark" href={home ? "#top" : "/"} aria-label="TYR home">
-          <img src="/tyr-logo.svg" alt="TYR" width="112" height="40" />
+        <a className="wordmark" href={home ? "#top" : sitePath("/")} aria-label="TYR home">
+          <img src={sitePath("/tyr-logo.svg")} alt="TYR" width="112" height="40" />
         </a>
 
         <div className="nav-cluster">

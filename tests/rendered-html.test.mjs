@@ -24,13 +24,13 @@ test("renders the TYR promotional home page", async () => {
   assert.match(html, /<title>TYR — Position\. Angle\. Strike\.<\/title>/i);
   assert.match(html, /POSITION\./);
   assert.match(html, /YOUR TANK/);
-  assert.match(html, /href="\/tanks#tank-roster"/);
+  assert.match(html, /href="\/tanks\/#tank-roster"/);
   assert.match(html, /Wishlist on Steam/i);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
 });
 
 test("renders the vehicle database", async () => {
-  const response = await render("/tanks");
+  const response = await render("/tanks/");
   assert.equal(response.status, 200);
 
   const html = await response.text();
@@ -43,7 +43,7 @@ test("renders the vehicle database", async () => {
 });
 
 test("renders the developers page without reference-site links", async () => {
-  const response = await render("/developers");
+  const response = await render("/developers/");
   assert.equal(response.status, 200);
 
   const html = await response.text();

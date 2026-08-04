@@ -31,13 +31,18 @@ npm run build
 
 `npm test` creates a production build and verifies the rendered HTML for all three routes.
 
+## GitHub Pages
+
+Every push to `main` builds a static export and deploys it with the GitHub Pages workflow. The published site is available at:
+
+`https://mrnobodyx3.github.io/TYR/`
+
+The production build applies the `/TYR` repository path to navigation, artwork, fonts, videos, and social metadata. Local development continues to run at the root path.
+
 ## Project structure
 
 - `app/components` — shared navigation, footer, video, and armor interfaces
 - `app/lib` — shared links and navigation data
 - `app/tanks` — vehicle data and the interactive tank browser
 - `public` — game artwork, video clips, logos, and screenshots
-- `Reference` — source screenshots used as the visual reference
 - `tests` — route-level rendered HTML checks
-
-The project is intended to remain local unless deployment is explicitly requested.

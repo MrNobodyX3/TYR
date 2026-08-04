@@ -1,7 +1,7 @@
 import { AbilityVideo } from "./components/ability-video";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
-import { STEAM_URL } from "./lib/site";
+import { sitePath, STEAM_URL } from "./lib/site";
 
 const abilities = [
   { name: "Blink", tag: "REPOSITION", video: "/ability-blink.mp4", description: "Jump several vehicle lengths forward or back." },
@@ -64,7 +64,7 @@ export default function Home() {
           </p>
         </div>
         <div className="overview-visual">
-          <img src="/official-screenshot-06.png" alt="A TYR squad advancing across the battlefield" width="1920" height="1080" loading="lazy" decoding="async" />
+          <img src={sitePath("/official-screenshot-06.png")} alt="A TYR squad advancing across the battlefield" width="1920" height="1080" loading="lazy" decoding="async" />
           <div className="scan-line" />
           <div className="overview-callout callout-a"><b>01</b><span>READ THE TERRAIN</span></div>
           <div className="overview-callout callout-b"><b>02</b><span>CONTROL THE SIGHTLINE</span></div>
@@ -83,9 +83,9 @@ export default function Home() {
 
         <div className="ability-grid">
           {abilities.map((ability, index) => (
-            <a className="ability-card" href="/tanks#tank-roster" key={ability.name} aria-label={`Explore ${ability.name} in the tank database`}>
+            <a className="ability-card" href={sitePath("/tanks/#tank-roster")} key={ability.name} aria-label={`Explore ${ability.name} in the tank database`}>
               <div className="ability-media">
-                <AbilityVideo src={ability.video} />
+                <AbilityVideo src={sitePath(ability.video)} />
                 <div className="media-grid" />
                 <span>0{index + 1}</span>
               </div>
@@ -97,14 +97,14 @@ export default function Home() {
           ))}
         </div>
         <div className="ability-cta">
-          <a className="button button-primary focus-brackets" href="/tanks">Explore All Tanks <span>↗</span></a>
+          <a className="button button-primary focus-brackets" href={sitePath("/tanks/")}>Explore All Tanks <span>↗</span></a>
         </div>
       </section>
 
       <section className="roster section">
         <div className="roster-image">
           <img
-            src="/official-screenshot-05.png"
+            src={sitePath("/official-screenshot-05.png")}
             alt="A TYR heavy tank moving through the red-rock battlefield"
             width={1920}
             height={1080}

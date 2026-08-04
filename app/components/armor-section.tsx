@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, type CSSProperties } from "react";
+import { sitePath } from "../lib/site";
 
 type ArmorZone = {
   id: string;
@@ -123,7 +124,7 @@ export function ArmorSection() {
         <div className="armor-stage">
           <div className="armor-model-zoom">
             <img
-              src="/armor-model.png"
+              src={sitePath("/armor-model.png")}
               alt="Tricera tank with color-coded armor model"
               width="1223"
               height="719"

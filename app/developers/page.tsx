@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
-import { STEAM_URL } from "../lib/site";
+import { sitePath, STEAM_URL } from "../lib/site";
 
 const CREW = [
   ["Veigar Bouius", "Studio Director"],
@@ -60,7 +60,7 @@ export default function DevelopersPage() {
             <a className="button button-secondary" href={STEAM_URL} target="_blank" rel="noreferrer">Follow TYR on Steam</a>
           </div>
         </div>
-        <div className="developer-emblem"><img src="/stoke-games-logo.png" alt="Stoke Games" width="768" height="600" /></div>
+        <div className="developer-emblem"><img src={sitePath("/stoke-games-logo.png")} alt="Stoke Games" width="768" height="600" /></div>
       </section>
 
       <section className="studio-brief section" id="studio">
