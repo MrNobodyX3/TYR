@@ -1,26 +1,14 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
-const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
-const { default: worker } = await import(workerUrl.href);
-
-async function render(pathname = "/") {
-  return worker.fetch(
-    new Request(`http://localhost${pathname}`, { headers: { accept: "text/html" } }),
-    {
-      ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) },
-    },
-    { waitUntil() {}, passThroughOnException() {} },
-  );
+function pageFile(pathname = "/") {
+  const normalized = pathname.replace(/^\/+|\/+$/g, "");
+  return new URL(`../dist/client/${normalized ? `${normalized}/` : ""}index.html`, import.meta.url);
 }
 
 test("renders the TYR promotional home page", async () => {
-  const response = await render();
-  assert.equal(response.status, 200);
-  assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
-
-  const html = await response.text();
+  const html = await readFile(pageFile(), "utf8");
   assert.match(html, /<title>TYR — Position\. Angle\. Strike\.<\/title>/i);
   assert.match(html, /POSITION\./);
   assert.match(html, /YOUR TANK/);
@@ -30,10 +18,7 @@ test("renders the TYR promotional home page", async () => {
 });
 
 test("renders the vehicle database", async () => {
-  const response = await render("/tanks/");
-  assert.equal(response.status, 200);
-
-  const html = await response.text();
+  const html = await readFile(pageFile("/tanks/"), "utf8");
   assert.match(html, /<title>Tank Database — TYR<\/title>/i);
   assert.match(html, /PILOT HEAVY/);
   assert.match(html, /EVERY ANGLE/);
@@ -43,10 +28,7 @@ test("renders the vehicle database", async () => {
 });
 
 test("renders the developers page without reference-site links", async () => {
-  const response = await render("/developers/");
-  assert.equal(response.status, 200);
-
-  const html = await response.text();
+  const html = await readFile(pageFile("/developers/"), "utf8");
   assert.match(html, /<title>The Developers — TYR<\/title>/i);
   assert.match(html, /BUILT TO/);
   assert.match(html, /THE CREW/);
